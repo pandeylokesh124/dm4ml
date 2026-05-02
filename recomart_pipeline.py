@@ -20,6 +20,14 @@ def dummy_task():
     print("Task executed!")
 
 
+def run_feature_store():
+    from feature_store import FeatureStore
+    fs = FeatureStore()
+    fs.register_features()
+    fs.materialize(data_path='data/prepared/clean_interactions.csv', version=1)
+    fs.close()
+
+
 # 3. FIX: Changed 'schedule_interval' to 'schedule' (Airflow 2.0+ standard)
 with DAG(
         dag_id='recomart_pipeline',
@@ -37,9 +45,14 @@ with DAG(
         python_callable=dummy_task
     )
 
+    task_feature_store = PythonOperator(
+        task_id='feature_store',
+        python_callable=run_feature_store
+    )
+
     task_train = PythonOperator(
         task_id='train',
         python_callable=dummy_task
     )
 
-    task_ingest >> task_validate >> task_train
+    task_ingest >> task_validate >> task_feature_store >> task_train
