@@ -1,0 +1,7 @@
+[
+  {"product_id":500,"category":"Electronics","price":245.5,"stock":45},
+  {"product_id":501,"category":"Books","price":15.99,"stock":120},
+  {"product_id":502,"category":"Fashion","price":49.0,"stock":12},
+  {"product_id":503,"category":"Home & Kitchen","price":120.75,"stock":5},
+  {"product_id":504,"category":"Electronics","price":899.99,"stock":30}
+]
