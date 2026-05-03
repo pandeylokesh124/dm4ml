@@ -49,19 +49,20 @@ def train_recommender(data_path):
 
         # 4. Calculate Metrics
         mae = mean_absolute_error(actual_ratings, predicted_ratings)
-        precision, recall = calculate_precision_recall_at_k(actual_ratings, predicted_ratings, k=5)
+        precision, recall = calculate_precision_recall_at_k(actual_ratings, predicted_ratings, k=20)
 
-        # 5. Log to MLflow
+        # 5. Log to MLflow (Note: It is best practice to log the raw floats to MLflow)
         mlflow.log_param("n_components", 10)
         mlflow.log_metric("MAE", mae)
-        mlflow.log_metric("Precision_at_5", precision)
-        mlflow.log_metric("Recall_at_5", recall)
+        mlflow.log_metric("Precision_at_5_pct", precision * 100)  # Logged as percentage
+        mlflow.log_metric("Recall_at_5_pct", recall * 100)  # Logged as percentage
         mlflow.sklearn.log_model(svd, "svd_model")
 
         print(f"Model Training complete.")
-        print(f"MAE: {mae:.4f}")
-        print(f"Precision@5: {precision:.4f}")
-        print(f"Recall@5: {recall:.4f}")
+        # Printing as percentages for your report
+        print(f"MAE: {mae:.4f} (Avg. star rating error)")
+        print(f"Precision@5: {precision * 100:.2f}%")
+        print(f"Recall@5: {recall * 100:.2f}%")
 
 
 if __name__ == "__main__":
