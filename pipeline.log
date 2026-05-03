@@ -247,3 +247,30 @@ TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tra
 2026-05-03 16:07:57,589 - INFO - Training complete
 2026-05-03 16:07:57,589 - INFO - Step 'train' completed in 5.46s
 2026-05-03 16:07:57,589 - INFO - === Pipeline completed successfully ===
+2026-05-03 16:45:21,192 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 16:45:21,193 - INFO - 
+--- Running step: ingest ---
+2026-05-03 16:45:21,685 - INFO - Starting ingestion...
+2026-05-03 16:45:21,704 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
+2026-05-03 16:45:21,704 - INFO - Step 'ingest' completed in 0.51s
+2026-05-03 16:45:21,704 - INFO - 
+--- Running step: validate ---
+2026-05-03 16:45:21,777 - INFO - Starting validation...
+2026-05-03 16:45:21,805 - INFO - Validation complete: 292 rows
+2026-05-03 16:45:21,805 - INFO - Step 'validate' completed in 0.10s
+2026-05-03 16:45:21,805 - INFO - 
+--- Running step: prepare ---
+2026-05-03 16:45:23,182 - INFO - Starting preparation...
+2026-05-03 16:45:24,585 - INFO - Preparation complete: 292 rows
+2026-05-03 16:45:24,585 - INFO - Step 'prepare' completed in 2.78s
+2026-05-03 16:45:24,585 - INFO - 
+--- Running step: feature_store ---
+2026-05-03 16:45:24,590 - INFO - Starting feature store...
+2026-05-03 16:45:24,655 - INFO - Feature store complete
+2026-05-03 16:45:24,655 - INFO - Step 'feature_store' completed in 0.07s
+2026-05-03 16:45:24,655 - INFO - 
+--- Running step: train ---
+2026-05-03 16:45:26,213 - INFO - Starting training...
+2026-05-03 16:45:32,060 - INFO - Training complete
+2026-05-03 16:45:32,060 - INFO - Step 'train' completed in 7.40s
+2026-05-03 16:45:32,061 - INFO - === Pipeline completed successfully ===
