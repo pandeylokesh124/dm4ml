@@ -1,58 +1,150 @@
+import os
 import sys
+import logging
 from datetime import datetime
-from unittest.mock import MagicMock
-
-# 1. FIX: Mocking 'pwd' to stop the Windows POSIX error
-if sys.platform == "win32":
-    sys.modules["pwd"] = MagicMock()
-
-try:
-    from airflow import DAG
-    # 2. FIX: Using the new recommended import path to stop the DeprecationWarning
-    from airflow.providers.standard.operators.python import PythonOperator
-except (ImportError, ModuleNotFoundError):
-    # Fallback for older versions or if imports fail on Windows
-    from airflow.models import DAG
-    from airflow.operators.python import PythonOperator
 
 
-def dummy_task():
-    print("Task executed!")
+# -------------------- CONFIG --------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DATA_PATH = os.path.join(BASE_DIR, "sample_interactions.csv")
+CLEAN_DATA_PATH = os.path.join(BASE_DIR, "data", "prepared", "clean_interactions.csv")
+
+
+# -------------------- LOGGER --------------------
+def setup_logger():
+    logger = logging.getLogger("recomart_pipeline")
+    logger.setLevel(logging.INFO)
+
+    formatter = logging.Formatter(
+        "%(asctime)s - %(levelname)s - %(message)s"
+    )
+
+    console = logging.StreamHandler(sys.stdout)
+    console.setFormatter(formatter)
+
+    file_handler = logging.FileHandler("pipeline.log")
+    file_handler.setFormatter(formatter)
+
+    logger.addHandler(console)
+    logger.addHandler(file_handler)
+
+    return logger
+
+
+logger = setup_logger()
+
+
+# -------------------- TASKS --------------------
+def run_data_ingestion():
+    from ingest_data import DataIngestor
+
+    logger.info("Starting ingestion...")
+    ingestor = DataIngestor()
+
+    output_path = ingestor.ingest_interactions(DATA_PATH)
+
+    if not output_path:
+        raise RuntimeError("Ingestion failed")
+
+    logger.info(f"Ingestion complete: {output_path}")
+
+
+def run_data_validation():
+    from validate_data import DataValidator
+
+    logger.info("Starting validation...")
+    validator = DataValidator()
+
+    df = validator.validate_and_clean(DATA_PATH)
+
+    if df is None or df.empty:
+        raise RuntimeError("Validation failed")
+
+    logger.info(f"Validation complete: {len(df)} rows")
+
+
+def run_preparation():
+    from data_preparation_eda import DataPreparationPipeline
+
+    logger.info("Starting preparation...")
+    pipeline = DataPreparationPipeline(base_dir=BASE_DIR)
+
+    df = pipeline.run()
+
+    if df is None or df.empty:
+        raise RuntimeError("Preparation failed")
+
+    logger.info(f"Preparation complete: {len(df)} rows")
 
 
 def run_feature_store():
     from feature_store import FeatureStore
+
+    logger.info("Starting feature store...")
     fs = FeatureStore()
+
     fs.register_features()
-    fs.materialize(data_path='data/prepared/clean_interactions.csv', version=1)
+    fs.materialize(data_path=CLEAN_DATA_PATH, version=1)
     fs.close()
 
+    logger.info("Feature store complete")
 
-# 3. FIX: Changed 'schedule_interval' to 'schedule' (Airflow 2.0+ standard)
-with DAG(
-        dag_id='recomart_pipeline',
-        start_date=datetime(2023, 1, 1),
-        schedule='@daily',  # Fixed keyword argument
-        catchup=False
-) as dag:
-    task_ingest = PythonOperator(
-        task_id='ingest',
-        python_callable=dummy_task
-    )
 
-    task_validate = PythonOperator(
-        task_id='validate',
-        python_callable=dummy_task
-    )
+def run_train_model():
+    from train_model import RecommenderTrainer
 
-    task_feature_store = PythonOperator(
-        task_id='feature_store',
-        python_callable=run_feature_store
-    )
+    logger.info("Starting training...")
 
-    task_train = PythonOperator(
-        task_id='train',
-        python_callable=dummy_task
-    )
+    tracking_uri = os.getenv("MLFLOW_TRACKING_URI")
 
-    task_ingest >> task_validate >> task_feature_store >> task_train
+    trainer = RecommenderTrainer(tracking_uri=tracking_uri)
+    model = trainer.train_recommender(CLEAN_DATA_PATH)
+
+    if model is None:
+        raise RuntimeError("Training failed")
+
+    logger.info("Training complete")
+
+
+# -------------------- PIPELINE EXECUTION --------------------
+PIPELINE_STEPS = [
+    ("ingest", run_data_ingestion),
+    ("validate", run_data_validation),
+    ("prepare", run_preparation),
+    ("feature_store", run_feature_store),
+    ("train", run_train_model),
+]
+
+
+def run_pipeline(selected_steps=None):
+    logger.info("=== Starting Recomart Pipeline ===")
+
+    for step_name, step_func in PIPELINE_STEPS:
+        if selected_steps and step_name not in selected_steps:
+            continue
+
+        logger.info(f"\n--- Running step: {step_name} ---")
+
+        try:
+            start_time = datetime.now()
+            step_func()
+            duration = (datetime.now() - start_time).total_seconds()
+
+            logger.info(f"Step '{step_name}' completed in {duration:.2f}s")
+
+        except Exception as e:
+            logger.exception(f"Step '{step_name}' FAILED")
+            logger.info("Pipeline stopped due to failure.")
+            return
+
+    logger.info("=== Pipeline completed successfully ===")
+
+
+# -------------------- ENTRY POINT --------------------
+if __name__ == "__main__":
+    # Run full pipeline
+    run_pipeline()
+
+    # OR run specific steps:
+    # run_pipeline(selected_steps=["ingest", "validate"])

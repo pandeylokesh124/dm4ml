@@ -1,0 +1,18 @@
+Data Quality Report
+===================
+Generated: 2026-05-03 16:07:50
+
+Summary Metrics
+---------------
+Input file: C:\Users\hp\Desktop\BITS\Semester 2\Data Management for ML\Assignment\sample_interactions.csv
+Raw row count: 299
+Raw column count: 4
+Cleaned row count: 292
+Cleaned column count: 4
+Duplicate rows removed: 7
+Total missing values handled: 0
+
+Issues & Validation Notes
+------------------------
+- Extra columns detected: timestamp
+- Found 7 duplicate user-item rows.

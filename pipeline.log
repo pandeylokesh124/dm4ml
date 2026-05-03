@@ -1,11 +1,7 @@
-2026-05-01 19:28:14,808 - INFO - Successfully ingested interactions to data/raw/interactions/20260501_1928_interactions.csv
-2026-05-01 19:50:31,702 - INFO - Successfully ingested interactions to data/raw/interactions/20260501_1950_interactions.csv
-2026-05-01 19:52:10,436 - INFO - Successfully ingested interactions to data/raw/interactions/20260501_1952_interactions.csv
-2026-05-01 20:17:00,780 - INFO - Successfully ingested interactions to data/raw/interactions/20260501_2017_interactions.csv
-2026-05-02 15:09:43,016 - INFO - Successfully ingested interactions to data/raw/interactions/20260502_1509_interactions.csv
-2026-05-03 11:32:28,301 - INFO - Successfully ingested interactions to data/raw/interactions/20260503_1132_interactions.csv
-2026-05-03 12:09:10,481 - INFO - Successfully ingested interactions to data/raw/interactions/20260503_1209_interactions.csv
-2026-05-03 15:35:52,799 - INFO - Successfully ingested interactions to data/raw/interactions\20260503_1535_interactions.csv
+2026-05-03 15:35:52,281 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:35:52,281 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:35:52,785 - INFO - Starting ingestion...
 2026-05-03 15:35:52,799 - INFO - Ingestion complete: data/raw/interactions\20260503_1535_interactions.csv
 2026-05-03 15:35:52,799 - INFO - Step 'ingest' completed in 0.52s
 2026-05-03 15:35:52,799 - INFO - 
@@ -16,8 +12,6 @@
 2026-05-03 15:35:52,881 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:35:53,569 - INFO - Starting preparation...
-2026-05-03 15:35:54,043 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:35:54,043 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:35:55,013 - INFO - Preparation complete: 292 rows
 2026-05-03 15:35:55,013 - INFO - Step 'prepare' completed in 2.13s
 2026-05-03 15:35:55,013 - INFO - 
@@ -31,7 +25,10 @@
 2026-05-03 15:36:01,166 - INFO - Training complete
 2026-05-03 15:36:01,166 - INFO - Step 'train' completed in 6.03s
 2026-05-03 15:36:01,167 - INFO - === Pipeline completed successfully ===
-2026-05-03 15:37:34,296 - INFO - Successfully ingested interactions to data/raw/interactions\20260503_1537_interactions.csv
+2026-05-03 15:37:33,843 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:37:33,843 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:37:34,293 - INFO - Starting ingestion...
 2026-05-03 15:37:34,297 - INFO - Ingestion complete: data/raw/interactions\20260503_1537_interactions.csv
 2026-05-03 15:37:34,297 - INFO - Step 'ingest' completed in 0.45s
 2026-05-03 15:37:34,297 - INFO - 
@@ -42,8 +39,6 @@
 2026-05-03 15:37:34,352 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:37:35,043 - INFO - Starting preparation...
-2026-05-03 15:37:35,426 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:37:35,427 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:37:36,100 - INFO - Preparation complete: 292 rows
 2026-05-03 15:37:36,100 - INFO - Step 'prepare' completed in 1.75s
 2026-05-03 15:37:36,101 - INFO - 
@@ -57,7 +52,10 @@
 2026-05-03 15:37:41,431 - INFO - Training complete
 2026-05-03 15:37:41,431 - INFO - Step 'train' completed in 5.27s
 2026-05-03 15:37:41,431 - INFO - === Pipeline completed successfully ===
-2026-05-03 15:40:42,965 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 15:40:42,504 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:40:42,504 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:40:42,962 - INFO - Starting ingestion...
 2026-05-03 15:40:42,966 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 15:40:42,966 - INFO - Step 'ingest' completed in 0.46s
 2026-05-03 15:40:42,966 - INFO - 
@@ -68,8 +66,6 @@
 2026-05-03 15:40:43,029 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:40:43,723 - INFO - Starting preparation...
-2026-05-03 15:40:44,011 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:40:44,011 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:40:44,770 - INFO - Preparation complete: 292 rows
 2026-05-03 15:40:44,770 - INFO - Step 'prepare' completed in 1.74s
 2026-05-03 15:40:44,770 - INFO - 
@@ -83,7 +79,10 @@
 2026-05-03 15:40:50,074 - INFO - Training complete
 2026-05-03 15:40:50,074 - INFO - Step 'train' completed in 5.26s
 2026-05-03 15:40:50,074 - INFO - === Pipeline completed successfully ===
-2026-05-03 15:41:18,483 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 15:41:18,051 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:41:18,051 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:41:18,480 - INFO - Starting ingestion...
 2026-05-03 15:41:18,483 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 15:41:18,483 - INFO - Step 'ingest' completed in 0.43s
 2026-05-03 15:41:18,484 - INFO - 
@@ -94,8 +93,6 @@
 2026-05-03 15:41:18,534 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:41:19,191 - INFO - Starting preparation...
-2026-05-03 15:41:19,490 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:41:19,490 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:41:20,080 - INFO - Preparation complete: 292 rows
 2026-05-03 15:41:20,080 - INFO - Step 'prepare' completed in 1.55s
 2026-05-03 15:41:20,080 - INFO - 
@@ -109,7 +106,10 @@
 2026-05-03 15:41:25,800 - INFO - Training complete
 2026-05-03 15:41:25,800 - INFO - Step 'train' completed in 5.60s
 2026-05-03 15:41:25,800 - INFO - === Pipeline completed successfully ===
-2026-05-03 15:45:30,121 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 15:45:29,658 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:45:29,658 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:45:30,117 - INFO - Starting ingestion...
 2026-05-03 15:45:30,122 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 15:45:30,122 - INFO - Step 'ingest' completed in 0.46s
 2026-05-03 15:45:30,122 - INFO - 
@@ -120,8 +120,6 @@
 2026-05-03 15:45:30,178 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:45:30,854 - INFO - Starting preparation...
-2026-05-03 15:45:31,177 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:45:31,179 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:45:31,794 - INFO - Preparation complete: 292 rows
 2026-05-03 15:45:31,794 - INFO - Step 'prepare' completed in 1.62s
 2026-05-03 15:45:31,794 - INFO - 
@@ -135,7 +133,10 @@
 2026-05-03 15:45:37,269 - INFO - Training complete
 2026-05-03 15:45:37,269 - INFO - Step 'train' completed in 5.42s
 2026-05-03 15:45:37,270 - INFO - === Pipeline completed successfully ===
-2026-05-03 15:49:10,665 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 15:49:10,184 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:49:10,185 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:49:10,661 - INFO - Starting ingestion...
 2026-05-03 15:49:10,665 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 15:49:10,665 - INFO - Step 'ingest' completed in 0.48s
 2026-05-03 15:49:10,665 - INFO - 
@@ -146,8 +147,6 @@
 2026-05-03 15:49:10,721 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:49:11,386 - INFO - Starting preparation...
-2026-05-03 15:49:11,702 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:49:11,703 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:49:12,288 - INFO - Preparation complete: 292 rows
 2026-05-03 15:49:12,288 - INFO - Step 'prepare' completed in 1.57s
 2026-05-03 15:49:12,288 - INFO - 
@@ -167,7 +166,10 @@ Traceback (most recent call last):
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tracking_uri'
 2026-05-03 15:49:13,462 - INFO - Pipeline stopped due to failure.
-2026-05-03 15:51:14,570 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 15:51:14,111 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 15:51:14,111 - INFO - 
+--- Running step: ingest ---
+2026-05-03 15:51:14,566 - INFO - Starting ingestion...
 2026-05-03 15:51:14,570 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 15:51:14,570 - INFO - Step 'ingest' completed in 0.46s
 2026-05-03 15:51:14,570 - INFO - 
@@ -178,8 +180,6 @@ TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tra
 2026-05-03 15:51:14,628 - INFO - 
 --- Running step: prepare ---
 2026-05-03 15:51:15,305 - INFO - Starting preparation...
-2026-05-03 15:51:15,575 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 15:51:15,576 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 15:51:16,379 - INFO - Preparation complete: 292 rows
 2026-05-03 15:51:16,379 - INFO - Step 'prepare' completed in 1.75s
 2026-05-03 15:51:16,379 - INFO - 
@@ -193,7 +193,10 @@ TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tra
 2026-05-03 15:51:22,819 - INFO - Training complete
 2026-05-03 15:51:22,819 - INFO - Step 'train' completed in 6.40s
 2026-05-03 15:51:22,819 - INFO - === Pipeline completed successfully ===
-2026-05-03 16:00:14,102 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 16:00:13,233 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 16:00:13,233 - INFO - 
+--- Running step: ingest ---
+2026-05-03 16:00:14,087 - INFO - Starting ingestion...
 2026-05-03 16:00:14,103 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 16:00:14,103 - INFO - Step 'ingest' completed in 0.87s
 2026-05-03 16:00:14,103 - INFO - 
@@ -204,8 +207,6 @@ TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tra
 2026-05-03 16:00:14,304 - INFO - 
 --- Running step: prepare ---
 2026-05-03 16:00:15,813 - INFO - Starting preparation...
-2026-05-03 16:00:16,293 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 16:00:16,294 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 16:00:16,966 - INFO - Preparation complete: 292 rows
 2026-05-03 16:00:16,966 - INFO - Step 'prepare' completed in 2.66s
 2026-05-03 16:00:16,967 - INFO - 
@@ -219,7 +220,10 @@ TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tra
 2026-05-03 16:00:24,450 - INFO - Training complete
 2026-05-03 16:00:24,450 - INFO - Step 'train' completed in 7.41s
 2026-05-03 16:00:24,450 - INFO - === Pipeline completed successfully ===
-2026-05-03 16:07:50,401 - INFO - Successfully ingested interactions to data/raw/interactions\sample_interactions.csv
+2026-05-03 16:07:49,949 - INFO - === Starting Recomart Pipeline ===
+2026-05-03 16:07:49,949 - INFO - 
+--- Running step: ingest ---
+2026-05-03 16:07:50,397 - INFO - Starting ingestion...
 2026-05-03 16:07:50,401 - INFO - Ingestion complete: data/raw/interactions\sample_interactions.csv
 2026-05-03 16:07:50,401 - INFO - Step 'ingest' completed in 0.45s
 2026-05-03 16:07:50,401 - INFO - 
@@ -230,8 +234,6 @@ TypeError: RecommenderTrainer.__init__() got an unexpected keyword argument 'tra
 2026-05-03 16:07:50,459 - INFO - 
 --- Running step: prepare ---
 2026-05-03 16:07:51,141 - INFO - Starting preparation...
-2026-05-03 16:07:51,439 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2026-05-03 16:07:51,439 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2026-05-03 16:07:52,006 - INFO - Preparation complete: 292 rows
 2026-05-03 16:07:52,023 - INFO - Step 'prepare' completed in 1.56s
 2026-05-03 16:07:52,024 - INFO - 

@@ -5,58 +5,59 @@ import os
 import sys
 from datetime import datetime
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    force=True,
-    handlers=[
-        logging.FileHandler("ingestion.log", mode='a'),
-        logging.StreamHandler(sys.stdout)  # This ensures you see it in the terminal
-    ]
-)
 
+class DataIngestor:
+    def __init__(self, log_file="ingestion.log"):
+        self._setup_logging(log_file)
 
-def ingest_interactions(file_path):
-    try:
-        # Check if file exists first to avoid silent failures
-        if not os.path.exists(file_path):
-            logging.error(f"File not found: {file_path}")
-            return
+    def _setup_logging(self, log_file):
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            force=True,
+            handlers=[
+                logging.FileHandler(log_file, mode='a'),
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
 
-        df = pd.read_csv(file_path)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-        save_path = f"data/raw/interactions/{timestamp}_interactions.csv"
+    def ingest_interactions(self, file_path, output_dir="data/raw/interactions"):
+        try:
+            if not os.path.exists(file_path):
+                logging.error(f"File not found: {file_path}")
+                return None
 
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        df.to_csv(save_path, index=False)
+            df = pd.read_csv(file_path)
 
-        # This will now appear in both the file and console
-        logging.info(f"Successfully ingested interactions to {save_path}")
+            save_path = os.path.join(output_dir, "sample_interactions.csv")
 
-    except Exception as e:
-        logging.error(f"Failed to ingest CSV: {e}")
+            os.makedirs(output_dir, exist_ok=True)
+            df.to_csv(save_path, index=False)
 
+            logging.info(f"Successfully ingested interactions to {save_path}")
+            return save_path
 
-def ingest_product_api(api_url):
-    try:
-        # Sixmulation check: if it's a fake URL, it will trigger the except block
-        response = requests.get(api_url, timeout=5)
-        response.raise_for_status()
-        data = response.json()
-        df = pd.DataFrame(data)
+        except Exception as e:
+            logging.error(f"Failed to ingest CSV: {e}")
+            return None
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-        save_path = f"data/raw/products/{timestamp}_products.json"
+    def ingest_product_api(self, api_url, output_dir="data/raw/products"):
+        try:
+            response = requests.get(api_url, timeout=5)
+            response.raise_for_status()
 
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        df.to_json(save_path)
-        logging.info(f"Successfully ingested API data to {save_path}")
+            data = response.json()
+            df = pd.DataFrame(data)
 
-    except Exception as e:
-        logging.error(f"Failed to ingest API: {str(e)}")
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+            save_path = os.path.join(output_dir, f"{timestamp}_products.json")
 
+            os.makedirs(output_dir, exist_ok=True)
+            df.to_json(save_path)
 
-if __name__ == "__main__":
-    # Ensure the local sample file exists for testing
-    # If the file doesn't exist, the logger will now tell you why!
-    ingest_interactions('sample_interactions.csv')
+            logging.info(f"Successfully ingested API data to {save_path}")
+            return save_path
+
+        except Exception as e:
+            logging.error(f"Failed to ingest API: {str(e)}")
+            return None
