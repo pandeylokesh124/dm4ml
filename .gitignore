@@ -1,2 +1,4 @@
 mlruns/
 .idea/
+feature_store/*.db
+data/transformed/
