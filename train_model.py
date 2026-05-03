@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.decomposition import TruncatedSVD
 from sklearn.metrics import mean_absolute_error
 import mlflow
+import os
 import mlflow.sklearn
 
 
@@ -25,7 +26,15 @@ def train_recommender(data_path):
     df = pd.read_csv(data_path)
     # Create user-item matrix (users as rows, items as columns)
     user_item_matrix = df.pivot(index='user_id', columns='item_id', values='rating').fillna(0)
+    # Replace this with your ACTUAL project folder path from your screenshot
+    # Note: Use forward slashes / even on Windows to avoid errors
+    project_path = "C:/Users/hp/Desktop/BITS/Semester 2/Data Management for ML/Assignment"
+    db_path = os.path.join(project_path, "mlflow.db")
 
+    # This is the "Force" command
+    mlflow.set_tracking_uri(f"sqlite:///{db_path}")
+
+    print(f"FORCING metadata to: {mlflow.get_tracking_uri()}")
     with mlflow.start_run():
         # 1. Train Model (SVD)
         svd = TruncatedSVD(n_components=min(10, user_item_matrix.shape[1] - 1), random_state=42)
