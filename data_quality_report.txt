@@ -1,3 +1,18 @@
-Missing Values: 4
-Duplicate Entries: 0
-Invalid Ratings (out of 1-5 range): 0
+Data Quality Report
+===================
+Generated: 2026-05-03 11:40:25
+
+Summary Metrics
+---------------
+Input file: sample_interactions.csv
+Raw row count: 299
+Raw column count: 4
+Cleaned row count: 292
+Cleaned column count: 4
+Duplicate rows removed: 7
+Total missing values handled: 0
+
+Issues & Validation Notes
+------------------------
+- Extra columns detected: timestamp
+- Found 7 duplicate user-item rows.
